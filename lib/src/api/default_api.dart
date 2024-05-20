@@ -7,24 +7,24 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:openapi/src/model/add_risk_profile_request.dart';
-import 'package:openapi/src/model/add_risk_profile_response.dart';
-import 'package:openapi/src/model/fiat_confirm.dart';
-import 'package:openapi/src/model/fiat_confirm_response.dart';
-import 'package:openapi/src/model/fiat_in_confirm_body.dart';
-import 'package:openapi/src/model/fiat_in_request_body.dart';
-import 'package:openapi/src/model/fiat_in_request_response.dart';
-import 'package:openapi/src/model/fiat_request.dart';
-import 'package:openapi/src/model/fiat_request_response.dart';
-import 'package:openapi/src/model/get_user_info.dart';
-import 'package:openapi/src/model/get_user_response.dart';
-import 'package:openapi/src/model/login.dart';
-import 'package:openapi/src/model/login_response.dart';
-import 'package:openapi/src/model/register.dart';
-import 'package:openapi/src/model/register_response.dart';
-import 'package:openapi/src/model/send_otp_body.dart';
-import 'package:openapi/src/model/send_otp_response.dart';
-import 'package:openapi/src/model/user_id.dart';
+import 'package:pdax_api/src/model/add_risk_profile_request.dart';
+import 'package:pdax_api/src/model/add_risk_profile_response.dart';
+import 'package:pdax_api/src/model/fiat_confirm.dart';
+import 'package:pdax_api/src/model/fiat_confirm_response.dart';
+import 'package:pdax_api/src/model/fiat_in_confirm_body.dart';
+import 'package:pdax_api/src/model/fiat_in_request_body.dart';
+import 'package:pdax_api/src/model/fiat_in_request_response.dart';
+import 'package:pdax_api/src/model/fiat_request.dart';
+import 'package:pdax_api/src/model/fiat_request_response.dart';
+import 'package:pdax_api/src/model/get_user_info.dart';
+import 'package:pdax_api/src/model/get_user_response.dart';
+import 'package:pdax_api/src/model/login.dart';
+import 'package:pdax_api/src/model/login_response.dart';
+import 'package:pdax_api/src/model/register.dart';
+import 'package:pdax_api/src/model/register_response.dart';
+import 'package:pdax_api/src/model/send_otp_body.dart';
+import 'package:pdax_api/src/model/send_otp_response.dart';
+import 'package:pdax_api/src/model/user_id.dart';
 
 class DefaultApi {
 

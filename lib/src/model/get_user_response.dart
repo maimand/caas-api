@@ -3,10 +3,10 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:openapi/src/model/get_user_response_documents.dart';
-import 'package:openapi/src/model/get_user_response_otp_status.dart';
-import 'package:openapi/src/model/get_user_response_location.dart';
-import 'package:openapi/src/model/get_user_response_user_info.dart';
+import 'package:pdax_api/src/model/get_user_response_user_info.dart';
+import 'package:pdax_api/src/model/get_user_response_otp_status.dart';
+import 'package:pdax_api/src/model/get_user_response_location.dart';
+import 'package:pdax_api/src/model/get_user_response_documents.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 

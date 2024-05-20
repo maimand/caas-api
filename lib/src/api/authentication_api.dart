@@ -7,7 +7,7 @@ import 'dart:async';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:openapi/src/model/get_system_health_response.dart';
+import 'package:pdax_api/src/model/get_system_health_response.dart';
 
 class AuthenticationApi {
 

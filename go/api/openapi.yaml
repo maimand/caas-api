@@ -1,0 +1,960 @@
+openapi: 3.0.0
+info:
+  description: PDAX Integration with GCash
+  title: PDAX
+  version: 1.2.1
+servers:
+- url: "https://{environment}.api.pdax.ph/caas-gcash-orchestrator/"
+  variables:
+    environment:
+      default: test.v1
+      enum:
+      - caas
+      - dev.v1
+      - stage.v1
+      - test.v1
+paths:
+  /gcash/login:
+    post:
+      operationId: getIdToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+          description: Success
+        "400":
+          description: Invalid authCode
+      summary: Get idToken
+  /gcash/login-test:
+    post:
+      operationId: test login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+          description: Success
+        "400":
+          description: Invalid authCode
+      summary: Get idToken
+  /gcash/get_user_id:
+    post:
+      operationId: getUserId
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserID'
+          description: Success
+        "400":
+          description: Invalid authCode
+      security:
+      - Authorization: []
+      summary: Get User ID
+  /gcash/users/{userId}:
+    post:
+      operationId: getUserInfo
+      parameters:
+      - description: User ID (uuid format)
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          example: 92588f334ba54b1699a4bfb296ec9c7b
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetUserInfo'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserResponse'
+          description: Success
+        "400":
+          description: Invalid authCode
+      security:
+      - Authorization: []
+      summary: Get User Info
+  /gcash/users:
+    post:
+      operationId: registerUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterResponse'
+          description: Success
+        "400":
+          description: Invalid authCode
+      security:
+      - Authorization: []
+      summary: Add new user
+  /gcash/users/{userId}/fiat_out_request:
+    post:
+      operationId: fiatRequest
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FiatRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FiatRequestResponse'
+          description: Success
+        "400":
+          description: Invalid authCode
+      security:
+      - Authorization: []
+      summary: Create new fiat request to GCash Cash In
+  /gcash/users/{userId}/fiat_out_confirm:
+    post:
+      operationId: fiatConfirm
+      parameters:
+      - description: caasIdempotencyKey from get-idempotency-key endpoint
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: otp
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FiatConfirm'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FiatConfirmResponse'
+          description: Success
+        "400":
+          description: Invalid authCode
+      security:
+      - Authorization: []
+      summary: Confirm fiat request to GCash Cash Out
+  /gcash/users/{userId}/fiat_in_request:
+    post:
+      operationId: fiatInRequest
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FiatInRequestBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FiatInRequestResponse'
+          description: Success
+        "400":
+          description: Invalid authCode
+      security:
+      - Authorization: []
+      summary: Fiat request to GCash Cash In
+  /gcash/users/{userId}/otp:
+    post:
+      operationId: sendOTP
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendOTPBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendOTPResponse'
+          description: Success
+      security:
+      - Authorization: []
+      summary: Send OTP email
+  /gcash/users/{userId}/fiat_in_confirm:
+    post:
+      operationId: fiatInConfirm
+      parameters:
+      - description: caasIdempotencyKey from get-idempotency-key endpoint
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FiatInConfirmBody'
+      responses:
+        "400":
+          description: Invalid authCode
+      security:
+      - Authorization: []
+      summary: Confirm fiat request to GCash Cash In
+  /gcash/crypto_prices:
+    get:
+      operationId: getCryptoPrice
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Invalid authCode
+      security:
+      - Authorization: []
+      summary: Get PDAX crypto market prices
+  /gcash/system_health:
+    get:
+      operationId: getSystemHealth
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSystemHealthResponse'
+          description: Success
+        "400":
+          description: Invalid authCode
+      security:
+      - Authorization: []
+      summary: Get System Health
+      tags:
+      - Authentication
+  /gcash/risk_profiles:
+    post:
+      operationId: postRiskProfile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddRiskProfileRequest'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddRiskProfileResponse'
+          description: Success
+        "400":
+          description: Invalid authCode
+      security:
+      - Authorization: []
+      summary: Post user's Risk Profile
+components:
+  schemas:
+    SendOTPBody:
+      properties:
+        otpId:
+          type: string
+        action:
+          type: string
+        fiatAmount:
+          type: number
+        cryptoToken:
+          type: string
+        cryptoTokenValue:
+          type: number
+        destinationAddress:
+          type: string
+      required:
+      - action
+      - otpId
+      type: object
+    SendOTPResponse:
+      example:
+        destinationAddress: destinationAddress
+        otpId: otpId
+        sender: sender
+        fiatAmount: 0.8008281904610115
+        recipient: recipient
+        action: action
+        cryptoToken: cryptoToken
+        cryptoTokenValue: 6.027456183070403
+        expiresAt: expiresAt
+      properties:
+        otpId:
+          type: string
+        action:
+          type: string
+        fiatAmount:
+          type: number
+        cryptoToken:
+          type: string
+        cryptoTokenValue:
+          type: number
+        destinationAddress:
+          type: string
+        sender:
+          type: string
+        recipient:
+          type: string
+        expiresAt:
+          type: string
+      type: object
+    GetUserResponse:
+      example:
+        userInfo:
+          lastName: lastname
+          submittedId: passport
+          sex: F
+          nameSuffix: ""
+          birthCity: Manila
+          birthDate: 01-01-2000
+          firstName: firstname
+          nationality: Filipino
+          governmentIdInfo: 1234ABCED
+          birthCountry: Philippines
+          emailAdress: "09123456789"
+          middleName: middlename
+          incomeSource: Salary
+          contactNo: "09123456789"
+          governmentId: passport
+        clientId: 92588f33-4ba5-4b16-99a4-bfb296ec9c7b
+        documents:
+          idFrontUrl: id_front_url
+          idBackUrl: id_back_url
+          livenessVideo: video.mp4
+          documentId: ""
+          idFront: front.jpg
+          livenessVideoUrl: liveness_video_url
+          idBack: front.jpg
+        cryptoOut: true
+        isActive: true
+        fiatOut: true
+        createdAt: 2022-04-09T06:34:38.682887+0000
+        cryptoIn: true
+        trade: true
+        tier: verified
+        fiatIn: true
+        location:
+          country: Philippines
+          zipCode: "1109"
+          address: Quezon City
+          city: Quezon City
+          region: NCR
+        partnerId: 52d6413c-dcf5-43f0-b9ad-b0479bcd33b3
+        otpStatus:
+          retries: 0
+          lastUpdated: 2022-04-09T06:34:38.682887+0000
+          isLocked: true
+        updatedAt: 2022-04-09T06:34:38.682902+0000
+      properties:
+        clientId:
+          example: 92588f33-4ba5-4b16-99a4-bfb296ec9c7b
+          type: string
+        partnerId:
+          example: 52d6413c-dcf5-43f0-b9ad-b0479bcd33b3
+          type: string
+        isActive:
+          type: boolean
+        userInfo:
+          $ref: '#/components/schemas/GetUserResponse_userInfo'
+        location:
+          $ref: '#/components/schemas/GetUserResponse_location'
+        documents:
+          $ref: '#/components/schemas/GetUserResponse_documents'
+        otpStatus:
+          $ref: '#/components/schemas/GetUserResponse_otpStatus'
+        tier:
+          example: verified
+          type: string
+        cryptoIn:
+          example: true
+          type: boolean
+        cryptoOut:
+          example: true
+          type: boolean
+        fiatIn:
+          example: true
+          type: boolean
+        fiatOut:
+          example: true
+          type: boolean
+        trade:
+          example: true
+          type: boolean
+        createdAt:
+          example: 2022-04-09T06:34:38.682887+0000
+          type: string
+        updatedAt:
+          example: 2022-04-09T06:34:38.682902+0000
+          nullable: true
+          type: string
+      type: object
+    UserID:
+      example:
+        userId: userId
+      properties:
+        userId:
+          nullable: true
+          type: string
+      type: object
+    Login:
+      example:
+        authCode: authCode
+      properties:
+        authCode:
+          nullable: true
+          type: string
+      type: object
+    GetUserInfo:
+      example:
+        authCode: authCode
+      properties:
+        authCode:
+          nullable: false
+          type: string
+      required:
+      - authCode
+      type: object
+    Register:
+      example:
+        authCode: authCode
+        token: token
+      properties:
+        authCode:
+          nullable: true
+          type: string
+        token:
+          nullable: true
+          type: string
+      type: object
+    FiatRequest:
+      example:
+        amount: 0.8008281904610115
+        mobile: "09153456789"
+      properties:
+        mobile:
+          default: "09153456789"
+          type: string
+        amount:
+          default: 100.0
+          type: number
+      required:
+      - amount
+      - mobile
+      type: object
+    AddRiskProfileRequest:
+      example:
+        clientId: 92588f33-4ba5-4b16-99a4-bfb296ec9c7b
+        investmentKnowledgeLevel: good knowledge
+        gender: F
+        investmentProjectedTrade: 1 to 20 trades
+        isUSCitizen: "true"
+        investmentFinancialGoal: conservative growth
+        investmentRiskAppetite: conservative
+        investmentLiquidityNeeds: "example: under 6 months"
+        isPep: "true"
+      properties:
+        clientId:
+          example: 92588f33-4ba5-4b16-99a4-bfb296ec9c7b
+          type: string
+        isPep:
+          example: "true"
+          type: string
+        isUSCitizen:
+          example: "true"
+          type: string
+        gender:
+          example: F
+          type: string
+        investmentProjectedTrade:
+          example: 1 to 20 trades
+          type: string
+        investmentKnowledgeLevel:
+          example: good knowledge
+          type: string
+        investmentFinancialGoal:
+          example: conservative growth
+          type: string
+        investmentRiskAppetite:
+          example: conservative
+          type: string
+        investmentLiquidityNeeds:
+          example: "example: under 6 months"
+          type: string
+      required:
+      - clientId
+      type: object
+    FiatConfirm:
+      example:
+        amount: 0.8008281904610115
+        transid: "1000000000080"
+      properties:
+        transid:
+          default: "1000000000080"
+          type: string
+        amount:
+          type: number
+      required:
+      - amount
+      - transid
+      type: object
+    GetSystemHealthResponse:
+      example:
+        client_user: true
+        system_maintenance: true
+        ongoing_maintenance: true
+        caas: true
+        modules:
+          ledger: true
+          trade: true
+          fiat: true
+          admin: true
+          user_management: true
+          crypto: true
+        admin_user: true
+      properties:
+        caas:
+          example: true
+          type: boolean
+        admin_user:
+          example: true
+          type: boolean
+        client_user:
+          type: boolean
+        modules:
+          $ref: '#/components/schemas/GetSystemHealthResponse_modules'
+        system_maintenance:
+          example: true
+          nullable: true
+          type: boolean
+        ongoing_maintenance:
+          example: true
+          type: boolean
+      type: object
+    LoginResponse:
+      example:
+        idToken: idToken
+      properties:
+        idToken:
+          description: added to headers for request validations
+          type: string
+      type: object
+    RegisterResponse:
+      example:
+        clientId: clientId
+        message: Account created successfully
+      properties:
+        message:
+          default: Account created successfully
+          description: added to headers for request validations
+          type: string
+        clientId:
+          type: string
+      type: object
+    AddRiskProfileResponse:
+      example:
+        clientId: 92588f33-4ba5-4b16-99a4-bfb296ec9c7b
+        partnerId: d3347ab6-821a-4ceb-a901-a8fb169333aa
+        message: Risk Profile created successfully
+      properties:
+        message:
+          default: Risk Profile created successfully
+          description: added to headers for request validations
+          example: Risk Profile created successfully
+          type: string
+        clientId:
+          example: 92588f33-4ba5-4b16-99a4-bfb296ec9c7b
+          type: string
+        partnerId:
+          example: d3347ab6-821a-4ceb-a901-a8fb169333aa
+          type: string
+      type: object
+    FiatRequestResponse:
+      example:
+        signature: aBVqvSH98VIlFSMs8sGsDlh1F6iAySJ7LwVwFuLUBi9KFGZ1Y+pNzOFapqVe8443nUU7Dfgj3qWLfYdUYwGBRFR0aVgM8jQ8AEB2QdgQn38jRpVZFoOcwXPUxkcOsRApNKyctIEs6cxEtoL9Y6k5PHMibdlDrkRtbqo9kSOElFwsZFXIOMO9ipsHfx0N4nzzfoMNosPZIOFfqWKfJUQvYSyEj6SC2iEEOnuUiPEqiKt4pJt+M1lthMEauXLNdemO3CATegyf5Y7PKShjlGQnkHqNjmbNbM3iNL9dG7Ivaj6A+QwjGA6szEiC9FlLfaHVpO18Z7uELdkeAuKVV==
+        response:
+          head:
+            clientId: 100028partnername
+            respTime: 2001-07-04T12:08:56+05:30
+            reqMsgId: TESTDATACASHINV38
+          body:
+            code: 0.8008281904610115
+            transid: "1000000000080"
+            message: Success
+      properties:
+        response:
+          $ref: '#/components/schemas/FiatRequestResponse_response'
+        signature:
+          default: aBVqvSH98VIlFSMs8sGsDlh1F6iAySJ7LwVwFuLUBi9KFGZ1Y+pNzOFapqVe8443nUU7Dfgj3qWLfYdUYwGBRFR0aVgM8jQ8AEB2QdgQn38jRpVZFoOcwXPUxkcOsRApNKyctIEs6cxEtoL9Y6k5PHMibdlDrkRtbqo9kSOElFwsZFXIOMO9ipsHfx0N4nzzfoMNosPZIOFfqWKfJUQvYSyEj6SC2iEEOnuUiPEqiKt4pJt+M1lthMEauXLNdemO3CATegyf5Y7PKShjlGQnkHqNjmbNbM3iNL9dG7Ivaj6A+QwjGA6szEiC9FlLfaHVpO18Z7uELdkeAuKVV==
+          type: string
+      type: object
+    FiatConfirmResponse:
+      example:
+        amount: 0.8008281904610115
+        netAmount: 1.4658129805029452
+        fee: 6.027456183070403
+        message: message
+        transactionId: "1000000000080"
+        updatedAt: updatedAt
+      properties:
+        message:
+          type: string
+        transactionId:
+          default: "1000000000080"
+          type: string
+        amount:
+          type: number
+        fee:
+          type: number
+        netAmount:
+          type: number
+        updatedAt:
+          type: string
+      type: object
+    FiatInRequestBody:
+      example:
+        amount: 0.8008281904610115
+      properties:
+        amount:
+          type: number
+      type: object
+    FiatInConfirmBody:
+      example:
+        paymentId: paymentId
+      properties:
+        paymentId:
+          type: string
+      type: object
+    FiatInRequestResponse:
+      example:
+        actionForm:
+          actionFormType: REDIRECTION
+          redirectionUrl: redirectionUrl
+        result:
+          resultStatus: resultStatus
+          resultCode: resultCode
+          resultString: resultString
+        paymentId: paymentId
+      properties:
+        actionForm:
+          $ref: '#/components/schemas/FiatInRequestResponse_actionForm'
+        paymentId:
+          type: string
+        result:
+          $ref: '#/components/schemas/FiatInRequestResponse_result'
+      type: object
+    GetUserResponse_userInfo:
+      example:
+        lastName: lastname
+        submittedId: passport
+        sex: F
+        nameSuffix: ""
+        birthCity: Manila
+        birthDate: 01-01-2000
+        firstName: firstname
+        nationality: Filipino
+        governmentIdInfo: 1234ABCED
+        birthCountry: Philippines
+        emailAdress: "09123456789"
+        middleName: middlename
+        incomeSource: Salary
+        contactNo: "09123456789"
+        governmentId: passport
+      properties:
+        firstName:
+          example: firstname
+          type: string
+        middleName:
+          example: middlename
+          type: string
+        lastName:
+          example: lastname
+          type: string
+        birthDate:
+          example: 01-01-2000
+          type: string
+        nameSuffix:
+          example: ""
+          type: string
+        sex:
+          example: F
+          type: string
+        nationality:
+          example: Filipino
+          type: string
+        contactNo:
+          example: "09123456789"
+          type: string
+        emailAdress:
+          example: "09123456789"
+          type: string
+        birthCountry:
+          example: Philippines
+          type: string
+        birthCity:
+          example: Manila
+          type: string
+        incomeSource:
+          example: Salary
+          type: string
+        submittedId:
+          example: passport
+          type: string
+        governmentId:
+          example: passport
+          type: string
+        governmentIdInfo:
+          example: 1234ABCED
+          type: string
+      type: object
+    GetUserResponse_location:
+      example:
+        country: Philippines
+        zipCode: "1109"
+        address: Quezon City
+        city: Quezon City
+        region: NCR
+      properties:
+        country:
+          example: Philippines
+          type: string
+        zipCode:
+          example: "1109"
+          type: string
+        address:
+          example: Quezon City
+          type: string
+        region:
+          example: NCR
+          type: string
+        city:
+          example: Quezon City
+          type: string
+      type: object
+    GetUserResponse_documents:
+      example:
+        idFrontUrl: id_front_url
+        idBackUrl: id_back_url
+        livenessVideo: video.mp4
+        documentId: ""
+        idFront: front.jpg
+        livenessVideoUrl: liveness_video_url
+        idBack: front.jpg
+      properties:
+        idFrontUrl:
+          example: id_front_url
+          type: string
+        idBackUrl:
+          example: id_back_url
+          type: string
+        livenessVideo:
+          example: video.mp4
+          type: string
+        documentId:
+          example: ""
+          type: string
+        idFront:
+          example: front.jpg
+          type: string
+        livenessVideoUrl:
+          example: liveness_video_url
+          type: string
+        idBack:
+          example: front.jpg
+          type: string
+      type: object
+    GetUserResponse_otpStatus:
+      example:
+        retries: 0
+        lastUpdated: 2022-04-09T06:34:38.682887+0000
+        isLocked: true
+      properties:
+        isLocked:
+          example: true
+          type: boolean
+        retries:
+          example: 0
+          type: number
+        lastUpdated:
+          example: 2022-04-09T06:34:38.682887+0000
+          type: string
+      type: object
+    GetSystemHealthResponse_modules:
+      example:
+        ledger: true
+        trade: true
+        fiat: true
+        admin: true
+        user_management: true
+        crypto: true
+      properties:
+        fiat:
+          example: true
+          type: boolean
+        trade:
+          example: true
+          type: boolean
+        crypto:
+          example: true
+          type: boolean
+        admin:
+          example: true
+          type: boolean
+        ledger:
+          example: true
+          type: boolean
+        user_management:
+          example: true
+          type: boolean
+      type: object
+    FiatRequestResponse_response_head:
+      example:
+        clientId: 100028partnername
+        respTime: 2001-07-04T12:08:56+05:30
+        reqMsgId: TESTDATACASHINV38
+      properties:
+        clientId:
+          default: 100028partnername
+          type: string
+        respTime:
+          default: 2001-07-04T12:08:56+05:30
+          type: string
+        reqMsgId:
+          default: TESTDATACASHINV38
+          type: string
+      type: object
+    FiatRequestResponse_response_body:
+      example:
+        code: 0.8008281904610115
+        transid: "1000000000080"
+        message: Success
+      properties:
+        transid:
+          default: "1000000000080"
+          type: string
+        code:
+          type: number
+        message:
+          default: Success
+          type: string
+      type: object
+    FiatRequestResponse_response:
+      example:
+        head:
+          clientId: 100028partnername
+          respTime: 2001-07-04T12:08:56+05:30
+          reqMsgId: TESTDATACASHINV38
+        body:
+          code: 0.8008281904610115
+          transid: "1000000000080"
+          message: Success
+      properties:
+        head:
+          $ref: '#/components/schemas/FiatRequestResponse_response_head'
+        body:
+          $ref: '#/components/schemas/FiatRequestResponse_response_body'
+      type: object
+    FiatInRequestResponse_actionForm:
+      example:
+        actionFormType: REDIRECTION
+        redirectionUrl: redirectionUrl
+      properties:
+        actionFormType:
+          example: REDIRECTION
+          type: string
+        redirectionUrl:
+          type: string
+      type: object
+    FiatInRequestResponse_result:
+      example:
+        resultStatus: resultStatus
+        resultCode: resultCode
+        resultString: resultString
+      properties:
+        resultCode:
+          type: string
+        resultString:
+          type: string
+        resultStatus:
+          type: string
+      type: object
+  securitySchemes:
+    Authorization:
+      bearerFormat: Use value of "idToken" as Authorization token
+      scheme: bearer
+      type: http

@@ -1,8 +1,8 @@
-# openapi.api.DefaultApi
+# pdax_api.api.DefaultApi
 
 ## Load the API package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 ```
 
 All URIs are relative to *https://test.v1.api.pdax.ph/caas-gcash-orchestrator*
@@ -30,12 +30,12 @@ Confirm fiat request to GCash Cash Out
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 // TODO Configure HTTP basic authorization: Authorization
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').password = 'YOUR_PASSWORD';
 
-final api = Openapi().getDefaultApi();
+final api = PdaxApi().getDefaultApi();
 final String idempotencyKey = idempotencyKey_example; // String | caasIdempotencyKey from get-idempotency-key endpoint
 final String userId = userId_example; // String | 
 final String otp = otp_example; // String | 
@@ -80,12 +80,12 @@ Confirm fiat request to GCash Cash In
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 // TODO Configure HTTP basic authorization: Authorization
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').password = 'YOUR_PASSWORD';
 
-final api = Openapi().getDefaultApi();
+final api = PdaxApi().getDefaultApi();
 final String idempotencyKey = idempotencyKey_example; // String | caasIdempotencyKey from get-idempotency-key endpoint
 final String userId = userId_example; // String | 
 final FiatInConfirmBody fiatInConfirmBody = ; // FiatInConfirmBody | 
@@ -127,12 +127,12 @@ Fiat request to GCash Cash In
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 // TODO Configure HTTP basic authorization: Authorization
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').password = 'YOUR_PASSWORD';
 
-final api = Openapi().getDefaultApi();
+final api = PdaxApi().getDefaultApi();
 final String userId = userId_example; // String | 
 final FiatInRequestBody fiatInRequestBody = ; // FiatInRequestBody | 
 
@@ -173,12 +173,12 @@ Create new fiat request to GCash Cash In
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 // TODO Configure HTTP basic authorization: Authorization
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').password = 'YOUR_PASSWORD';
 
-final api = Openapi().getDefaultApi();
+final api = PdaxApi().getDefaultApi();
 final String userId = userId_example; // String | 
 final FiatRequest fiatRequest = ; // FiatRequest | 
 
@@ -219,12 +219,12 @@ Get PDAX crypto market prices
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 // TODO Configure HTTP basic authorization: Authorization
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').password = 'YOUR_PASSWORD';
 
-final api = Openapi().getDefaultApi();
+final api = PdaxApi().getDefaultApi();
 
 try {
     api.getCryptoPrice();
@@ -258,9 +258,9 @@ Get idToken
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 
-final api = Openapi().getDefaultApi();
+final api = PdaxApi().getDefaultApi();
 final Login login = ; // Login | 
 
 try {
@@ -299,12 +299,12 @@ Get User ID
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 // TODO Configure HTTP basic authorization: Authorization
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').password = 'YOUR_PASSWORD';
 
-final api = Openapi().getDefaultApi();
+final api = PdaxApi().getDefaultApi();
 final Login login = ; // Login | 
 
 try {
@@ -343,12 +343,12 @@ Get User Info
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 // TODO Configure HTTP basic authorization: Authorization
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').password = 'YOUR_PASSWORD';
 
-final api = Openapi().getDefaultApi();
+final api = PdaxApi().getDefaultApi();
 final String userId = 92588f334ba54b1699a4bfb296ec9c7b; // String | User ID (uuid format)
 final GetUserInfo getUserInfo = ; // GetUserInfo | 
 
@@ -389,12 +389,12 @@ Post user's Risk Profile
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 // TODO Configure HTTP basic authorization: Authorization
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').password = 'YOUR_PASSWORD';
 
-final api = Openapi().getDefaultApi();
+final api = PdaxApi().getDefaultApi();
 final AddRiskProfileRequest addRiskProfileRequest = ; // AddRiskProfileRequest | 
 
 try {
@@ -433,12 +433,12 @@ Add new user
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 // TODO Configure HTTP basic authorization: Authorization
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').password = 'YOUR_PASSWORD';
 
-final api = Openapi().getDefaultApi();
+final api = PdaxApi().getDefaultApi();
 final Register register = ; // Register | 
 
 try {
@@ -477,12 +477,12 @@ Send OTP email
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 // TODO Configure HTTP basic authorization: Authorization
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').password = 'YOUR_PASSWORD';
 
-final api = Openapi().getDefaultApi();
+final api = PdaxApi().getDefaultApi();
 final String userId = userId_example; // String | 
 final SendOTPBody sendOTPBody = ; // SendOTPBody | 
 
@@ -523,9 +523,9 @@ Get idToken
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 
-final api = Openapi().getDefaultApi();
+final api = PdaxApi().getDefaultApi();
 final Login login = ; // Login | 
 
 try {

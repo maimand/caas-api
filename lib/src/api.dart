@@ -4,21 +4,21 @@
 
 import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
-import 'package:openapi/src/serializers.dart';
-import 'package:openapi/src/auth/api_key_auth.dart';
-import 'package:openapi/src/auth/basic_auth.dart';
-import 'package:openapi/src/auth/bearer_auth.dart';
-import 'package:openapi/src/auth/oauth.dart';
-import 'package:openapi/src/api/authentication_api.dart';
-import 'package:openapi/src/api/default_api.dart';
+import 'package:pdax_api/src/serializers.dart';
+import 'package:pdax_api/src/auth/api_key_auth.dart';
+import 'package:pdax_api/src/auth/basic_auth.dart';
+import 'package:pdax_api/src/auth/bearer_auth.dart';
+import 'package:pdax_api/src/auth/oauth.dart';
+import 'package:pdax_api/src/api/authentication_api.dart';
+import 'package:pdax_api/src/api/default_api.dart';
 
-class Openapi {
+class PdaxApi {
   static const String basePath = r'https://test.v1.api.pdax.ph/caas-gcash-orchestrator';
 
   final Dio dio;
   final Serializers serializers;
 
-  Openapi({
+  PdaxApi({
     Dio? dio,
     Serializers? serializers,
     String? basePathOverride,

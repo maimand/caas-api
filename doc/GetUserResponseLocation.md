@@ -1,8 +1,8 @@
-# openapi.model.GetUserResponseLocation
+# pdax_api.model.GetUserResponseLocation
 
 ## Load the model package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 ```
 
 ## Properties

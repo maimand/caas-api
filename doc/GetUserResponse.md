@@ -1,8 +1,8 @@
-# openapi.model.GetUserResponse
+# pdax_api.model.GetUserResponse
 
 ## Load the model package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 ```
 
 ## Properties

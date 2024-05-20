@@ -1,8 +1,8 @@
-# openapi.api.AuthenticationApi
+# pdax_api.api.AuthenticationApi
 
 ## Load the API package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 ```
 
 All URIs are relative to *https://test.v1.api.pdax.ph/caas-gcash-orchestrator*
@@ -19,12 +19,12 @@ Get System Health
 
 ### Example
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 // TODO Configure HTTP basic authorization: Authorization
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').username = 'YOUR_USERNAME'
 //defaultApiClient.getAuthentication<HttpBasicAuth>('Authorization').password = 'YOUR_PASSWORD';
 
-final api = Openapi().getAuthenticationApi();
+final api = PdaxApi().getAuthenticationApi();
 
 try {
     final response = api.getSystemHealth();

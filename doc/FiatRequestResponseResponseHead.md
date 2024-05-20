@@ -1,8 +1,8 @@
-# openapi.model.FiatRequestResponseResponseHead
+# pdax_api.model.FiatRequestResponseResponseHead
 
 ## Load the model package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 ```
 
 ## Properties

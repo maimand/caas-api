@@ -3,7 +3,7 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:openapi/src/model/get_system_health_response_modules.dart';
+import 'package:pdax_api/src/model/get_system_health_response_modules.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 

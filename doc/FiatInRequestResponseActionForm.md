@@ -1,8 +1,8 @@
-# openapi.model.FiatInRequestResponseActionForm
+# pdax_api.model.FiatInRequestResponseActionForm
 
 ## Load the model package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 ```
 
 ## Properties

@@ -32,7 +32,7 @@ doc/RegisterResponse.md
 doc/SendOTPBody.md
 doc/SendOTPResponse.md
 doc/UserID.md
-lib/openapi.dart
+lib/pdax_api.dart
 lib/src/api.dart
 lib/src/api/authentication_api.dart
 lib/src/api/default_api.dart

@@ -3,8 +3,8 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:openapi/src/model/fiat_request_response_response_body.dart';
-import 'package:openapi/src/model/fiat_request_response_response_head.dart';
+import 'package:pdax_api/src/model/fiat_request_response_response_body.dart';
+import 'package:pdax_api/src/model/fiat_request_response_response_head.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 

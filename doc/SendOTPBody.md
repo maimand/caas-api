@@ -1,8 +1,8 @@
-# openapi.model.SendOTPBody
+# pdax_api.model.SendOTPBody
 
 ## Load the model package
 ```dart
-import 'package:openapi/api.dart';
+import 'package:pdax_api/api.dart';
 ```
 
 ## Properties
