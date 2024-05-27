@@ -15,12 +15,12 @@ Method | HTTP request | Description
 [**fiatRequest**](DefaultApi.md#fiatrequest) | **POST** /gcash/users/{userId}/fiat_out_request | Create new fiat request to GCash Cash In
 [**getCryptoPrice**](DefaultApi.md#getcryptoprice) | **GET** /gcash/crypto_prices | Get PDAX crypto market prices
 [**getIdToken**](DefaultApi.md#getidtoken) | **POST** /gcash/login | Get idToken
+[**getIdTokenTest**](DefaultApi.md#getidtokentest) | **POST** /gcash/login-test | Get idToken
 [**getUserId**](DefaultApi.md#getuserid) | **POST** /gcash/get_user_id | Get User ID
 [**getUserInfo**](DefaultApi.md#getuserinfo) | **POST** /gcash/users/{userId} | Get User Info
 [**postRiskProfile**](DefaultApi.md#postriskprofile) | **POST** /gcash/risk_profiles | Post user&#39;s Risk Profile
 [**registerUser**](DefaultApi.md#registeruser) | **POST** /gcash/users | Add new user
 [**sendOTP**](DefaultApi.md#sendotp) | **POST** /gcash/users/{userId}/otp | Send OTP email
-[**testLogin**](DefaultApi.md#testlogin) | **POST** /gcash/login-test | Get idToken
 
 
 # **fiatConfirm**
@@ -292,6 +292,47 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getIdTokenTest**
+> LoginResponse getIdTokenTest(login)
+
+Get idToken
+
+### Example
+```dart
+import 'package:pdax_api/api.dart';
+
+final api = PdaxApi().getDefaultApi();
+final Login login = ; // Login | 
+
+try {
+    final response = api.getIdTokenTest(login);
+    print(response);
+} catch on DioError (e) {
+    print('Exception when calling DefaultApi->getIdTokenTest: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **login** | [**Login**](Login.md)|  | [optional] 
+
+### Return type
+
+[**LoginResponse**](LoginResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getUserId**
 > UserID getUserId(login)
 
@@ -508,47 +549,6 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [Authorization](../README.md#Authorization)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **testLogin**
-> LoginResponse testLogin(login)
-
-Get idToken
-
-### Example
-```dart
-import 'package:pdax_api/api.dart';
-
-final api = PdaxApi().getDefaultApi();
-final Login login = ; // Login | 
-
-try {
-    final response = api.testLogin(login);
-    print(response);
-} catch on DioError (e) {
-    print('Exception when calling DefaultApi->testLogin: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **login** | [**Login**](Login.md)|  | [optional] 
-
-### Return type
-
-[**LoginResponse**](LoginResponse.md)
-
-### Authorization
-
-No authorization required
 
 ### HTTP request headers
 

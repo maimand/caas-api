@@ -70,12 +70,12 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**fiatRequest**](doc/DefaultApi.md#fiatrequest) | **POST** /gcash/users/{userId}/fiat_out_request | Create new fiat request to GCash Cash In
 [*DefaultApi*](doc/DefaultApi.md) | [**getCryptoPrice**](doc/DefaultApi.md#getcryptoprice) | **GET** /gcash/crypto_prices | Get PDAX crypto market prices
 [*DefaultApi*](doc/DefaultApi.md) | [**getIdToken**](doc/DefaultApi.md#getidtoken) | **POST** /gcash/login | Get idToken
+[*DefaultApi*](doc/DefaultApi.md) | [**getIdTokenTest**](doc/DefaultApi.md#getidtokentest) | **POST** /gcash/login-test | Get idToken
 [*DefaultApi*](doc/DefaultApi.md) | [**getUserId**](doc/DefaultApi.md#getuserid) | **POST** /gcash/get_user_id | Get User ID
 [*DefaultApi*](doc/DefaultApi.md) | [**getUserInfo**](doc/DefaultApi.md#getuserinfo) | **POST** /gcash/users/{userId} | Get User Info
 [*DefaultApi*](doc/DefaultApi.md) | [**postRiskProfile**](doc/DefaultApi.md#postriskprofile) | **POST** /gcash/risk_profiles | Post user&#39;s Risk Profile
 [*DefaultApi*](doc/DefaultApi.md) | [**registerUser**](doc/DefaultApi.md#registeruser) | **POST** /gcash/users | Add new user
 [*DefaultApi*](doc/DefaultApi.md) | [**sendOTP**](doc/DefaultApi.md#sendotp) | **POST** /gcash/users/{userId}/otp | Send OTP email
-[*DefaultApi*](doc/DefaultApi.md) | [**testLogin**](doc/DefaultApi.md#testlogin) | **POST** /gcash/login-test | Get idToken
 
 
 ## Documentation For Models
