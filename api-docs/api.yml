@@ -36,7 +36,7 @@ paths:
   /gcash/login-test:
     post:
       summary: "Get idToken"
-      operationId: "test login"
+      operationId: "getIdToken"
       requestBody:
         content:
           application/json:
