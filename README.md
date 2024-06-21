@@ -67,7 +67,7 @@ Class | Method | HTTP request | Description
 [*DefaultApi*](doc/DefaultApi.md) | [**fiatConfirm**](doc/DefaultApi.md#fiatconfirm) | **POST** /gcash/users/{userId}/fiat_out_confirm | Confirm fiat request to GCash Cash Out
 [*DefaultApi*](doc/DefaultApi.md) | [**fiatInConfirm**](doc/DefaultApi.md#fiatinconfirm) | **POST** /gcash/users/{userId}/fiat_in_confirm | Confirm fiat request to GCash Cash In
 [*DefaultApi*](doc/DefaultApi.md) | [**fiatInRequest**](doc/DefaultApi.md#fiatinrequest) | **POST** /gcash/users/{userId}/fiat_in_request | Fiat request to GCash Cash In
-[*DefaultApi*](doc/DefaultApi.md) | [**fiatRequest**](doc/DefaultApi.md#fiatrequest) | **POST** /gcash/users/{userId}/fiat_out_request | Create new fiat request to GCash Cash In
+[*DefaultApi*](doc/DefaultApi.md) | [**fiatRequest**](doc/DefaultApi.md#fiatrequest) | **POST** /gcash/users/{userId}/fiat_out_request/test | Create new fiat request to GCash Cash In
 [*DefaultApi*](doc/DefaultApi.md) | [**getCryptoPrice**](doc/DefaultApi.md#getcryptoprice) | **GET** /gcash/crypto_prices | Get PDAX crypto market prices
 [*DefaultApi*](doc/DefaultApi.md) | [**getIdToken**](doc/DefaultApi.md#getidtoken) | **POST** /gcash/login | Get idToken
 [*DefaultApi*](doc/DefaultApi.md) | [**getIdTokenTest**](doc/DefaultApi.md#getidtokentest) | **POST** /gcash/login-test | Get idToken

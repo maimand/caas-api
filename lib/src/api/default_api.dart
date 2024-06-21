@@ -344,7 +344,7 @@ class DefaultApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/gcash/users/{userId}/fiat_out_request'.replaceAll('{' r'userId' '}', userId.toString());
+    final _path = r'/gcash/users/{userId}/fiat_out_request/test'.replaceAll('{' r'userId' '}', userId.toString());
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 [**fiatConfirm**](DefaultApi.md#fiatconfirm) | **POST** /gcash/users/{userId}/fiat_out_confirm | Confirm fiat request to GCash Cash Out
 [**fiatInConfirm**](DefaultApi.md#fiatinconfirm) | **POST** /gcash/users/{userId}/fiat_in_confirm | Confirm fiat request to GCash Cash In
 [**fiatInRequest**](DefaultApi.md#fiatinrequest) | **POST** /gcash/users/{userId}/fiat_in_request | Fiat request to GCash Cash In
-[**fiatRequest**](DefaultApi.md#fiatrequest) | **POST** /gcash/users/{userId}/fiat_out_request | Create new fiat request to GCash Cash In
+[**fiatRequest**](DefaultApi.md#fiatrequest) | **POST** /gcash/users/{userId}/fiat_out_request/test | Create new fiat request to GCash Cash In
 [**getCryptoPrice**](DefaultApi.md#getcryptoprice) | **GET** /gcash/crypto_prices | Get PDAX crypto market prices
 [**getIdToken**](DefaultApi.md#getidtoken) | **POST** /gcash/login | Get idToken
 [**getIdTokenTest**](DefaultApi.md#getidtokentest) | **POST** /gcash/login-test | Get idToken
