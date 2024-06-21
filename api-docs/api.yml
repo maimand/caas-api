@@ -119,7 +119,7 @@ paths:
           description: "Invalid authCode"
       security:
         - Authorization: []
-  /gcash/users/{userId}/fiat_out_request:
+  /gcash/users/{userId}/fiat_out_request/test:
     post:
       summary: "Create new fiat request to GCash Cash In"
       operationId: "fiatRequest"
